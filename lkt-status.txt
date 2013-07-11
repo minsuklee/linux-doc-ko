@@ -1,0 +1,4 @@
+2013-07-10 - 프로젝트 시작
+        Documentation/ko_KR/HOWTO
+        Documentation/ko_KR/stable_api_nonsense.txt
+     두 파일만 mainline kernel 에 등록된 상태로 시작
