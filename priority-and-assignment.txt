@@ -1,0 +1,13 @@
+HOWTO, (done) 梯團雙 <minchan.kim@gmail.com>
+stable-api-nonsense.txt, (done) 梯團雙 <minchan.kim@gmail.com>
+SubmittingPatches, (濛機醞) 檜團戮 <minsuk@hansung.ac.kr>
+CodingStyle, (濛機醞) 檜團戮 <minsuk@hansung.ac.kr>
+SubmittingDrivers, (濛機醞) 檜團戮 <minsuk@hansung.ac.kr>
+SubmitChecklist, (濛機醞) 檜團戮 <minsuk@hansung.ac.kr>
+stable_kernel_rules, (濛機醞) 檜團戮 <minsuk@hansung.ac.kr>
+
+development_process/*
+
+Documentation/power/drivers-testing.txt
+Documentation/power/devices.txt
+

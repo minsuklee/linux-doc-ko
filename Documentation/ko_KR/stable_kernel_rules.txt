@@ -1,0 +1,106 @@
+NOTE:
+This is a version of Documentation/stable_kernel_rules.txt (from Linux-3.8),
+translated into Korean.
+Note that the purpose of this file is to be easier to read in Korean and
+is not intended as a fork. If you have any comments or updates for this file
+please try to update the original English file first.
+If this translation is outdated or has any problem with translation,
+contact the translator or maintainer of this file.
+===
+이 문서는 Documentation/stable_kernel_rules.txt (Linux-3.8)의
+한글 번역본입니다.
+이 문서의 내용에 문제나 수정할 것이 있다면 먼저 영어 원문을 확인하고 수정하는
+것이 맞습니다. 번역이 잘못되었거나, 영어 원문이 개정되었다면 아래 번역자 또는
+문서 관리자에게 연락하시기 바랍니다.
+
+Translated by: Minsuk Lee <minsuk@hansung.ac.kr>
+Translated on: THU 2013 FEB 21
+
+===
+
+당신이 Linux -stable 릴리즈에 관하여 알고싶었던 모든 것
+
+"-stable" 트리에 어떤 패치는 받아들여지고, 어떤 패치는 그렇지 않은지에 관한
+규칙:
+
+ - 누가봐도 맞는 내용이며 테스트가 되어야 합니다.
+ - 문맥(변경 내용의 앞뒤)을 다 포함애서 100라인을 넘지 않아야 합니다.
+ - 딱 한 가지만 수정을 해야 합니다.
+ - 사람들을 괴롭히는 진짜 버그("이것이 문제일지도 몰라" 라고 하는 것 말고)를
+   수정해야 합니다.
+ - 빌드 에러(CONFIG_BROKEN으로 마크된 것은 제외하고), oops, 먹통, 데이터를
+   망가뜨림, 진짜 보안 이슈, 또는 '아, 그건 안돼'라고 할만한 이슈들을
+   수정해야 합니다. 간단히 말하면 중요한 문제를 해결해야 합니다.
+ - 만일 주목할 만한 성능이나 사용자 반응성 이슈를 수정하는 것이라면, 배포된
+   커널의 사용자에 의해 제기된 심각한 이슈도 고려대상 입니다. 이런 이슈는
+   매우 확실하지 않고, 오히려 퇴행을 유발할 위험성을 가지고 있기 때문에,
+   그런 경우는 반드시 배포 커널의 관리자에 의해 제출되어야 하며, 만약 있다면,
+   버그질라 엔트리가 링크된 부록과 사용자가 느낄 수 있는 효과에 관한 
+   추가적인 정보를 포함해야 한다.
+ - 새로운 장치 ID와 우회적인 문제해결(quirk)에 관한 것도 받아들여집니다.
+ - 경쟁(race)이 어떤 방식으로 이루어지는지에 관한 설명이 없다면, "이론적
+   경쟁 상태" 이슈가 없어야 합니다.  
+ - "사소한" 수정 (스펠링 변경, 공백 제거 등)이 포함되서는 안됩니다.
+ - Documentation/SubmittingPatches 의 규칙을 따라야 합니다.
+ - 패치 자체 또는 같은 수정 내용이 Linus의 트리 (upstream)에 이미 되어
+   있어야 합니다.
+ 
+-stable  트리에 패치를 제출하는 절차:
+
+ - 위의 규칙들을 따르고 있는지 확인한 뒤에, 패치는 stable@vger.kernel.org로
+   보내시면 됩니다. 반드시 적용되어야 할 커널 버전뿐만 아니라, 제출에 따른
+   changelog의 upstream commit ID를 적어야 합니다.
+ - 패치가 자동적으로 stable 트리에 포함되기 위해서는 sign-off 영역에
+     Cc: stable@vger.kernel.org
+   태그를 붙입니다. 일단 패치가 머지되면, 저자나 서브시스템 관리자가
+   아무 일을 하지 않아도 stable 트리에 포함됩니다.
+ - 만일 해당 패치가 적용되기에 앞서 다른 선별한 패치가 먼저 적용되어야
+   한다면, sign-off 영역에 다음과 같은 형태로 명시할 수 있습니다.
+
+     Cc: <stable@vger.kernel.org> # 3.3.x: a1f84a3: sched: Check for idle
+     Cc: <stable@vger.kernel.org> # 3.3.x: 1b9508f: sched: Rate-limit newidle
+     Cc: <stable@vger.kernel.org> # 3.3.x: fd21073: sched: Fix affinity logic
+     Cc: <stable@vger.kernel.org> # 3.3.x
+    Signed-off-by: Ingo Molnar <mingo@elte.hu>
+
+   태그 순서는 다음과 같은 의미입니다.
+     git cherry-pick a1f84a3
+     git cherry-pick 1b9508f
+     git cherry-pick fd21073
+     git cherry-pick <this commit>
+ 
+ - 패치가 큐에 들어갔다면, 보낸 사람에게는 ACK 메시지를 받고, 패치가 거절되면
+   NAK를 받게됩니다. 이 응답은 개발자의 스케쥴에 따라 며칠이 걸릴 수도
+   있습니다. 
+ - 만약 받아들여지면, 패치는 -stable 큐에 등록되며, 다른 개발자들, 관련된 
+   서브시스템 관리자들에 의해 리뷰가 됩니다.
+ - 보안 패치는 이 앨리어스로 보내서는 안되며, 문서에 있는대로
+   security@kernel.org 주소로 보내야 합니다.
+
+리뷰 사이클:
+ - -stable 관리자가 리뷰 사이클을 돌아야겠다고 결정하면 패치들이 리뷰
+   위원회, 패치가 영향을 주는 영역의 관리자에게 보내지며, linux-kernel
+   메일링 리스트에도 CC:로 보내집니다.
+ - 리뷰 위원회는 그 패치를 48시간 이내에 승인(ACK) 또는 거절(NAK) 합니다.
+ - 위원회의 한 멤버가 그 패치를 반대하거나, linux-kernel 멤버들이 관리자나
+   위원회 멤버들이 인식하지 못했던 이슈를 제기하면서 반대한다면, 그 패치는
+   큐에서 탈락하게됩니다.
+ - 리뷰 사이클 끝에서 모든 승인된 패치들은 최신의 -stable 커널에 포함되고
+   새로운 -stable 릴리즈가 됩니다.
+ - 보안 패치는 보통의 리뷰 사이클을 따르지 않고, 커널 보안 팀에 의해 바로
+   -stable 커널에 적용됩니다. 이 절차에 대한 자세한 내용이 궁금하시면
+   커널 보안팀에 연락을 하시기 바랍니다.
+   
+트리:
+
+ - 완료된 버전과 진행 중인 버전 양쪽에 대해 쌓여있는 패치들은 다음
+   위치에서 찾아볼 수 있습니다:
+	http://git.kernel.org/?p=linux/kernel/git/stable/stable-queue.git
+ - 모든 안정된 커널의 최종, 태그된 릴리즈는 다음 위치에서 버전별로 분리된
+   브랜치에서 찾아볼 수 있습니다.
+	http://git.kernel.org/?p=linux/kernel/git/stable/linux-stable.git
+
+리뷰 위원회:
+
+ - 이 위원회는 이 작업에 자원한 다수의 커널 개발자들과 그렇지 않은
+   몇명으로 구성됩니다.

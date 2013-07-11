@@ -1,0 +1,20 @@
+NOTE:
+This is a version of Documentation/<PATH/FILE> translated into Korean.
+This document is translated by Minsuk Lee <minsuk@hansung.ac.kr>
+Note that the purpose of this file is to be easier to read in Korean and is not intended as a fork. If you have any comments or updates for this file please try to update the original English file first.
+If this translation is outdated or has any problem with translation, contact the maintainer of this file.
+
+===
+이 문서는
+Documentation/<PATH/FILE>
+의 한글 번역입니다.
+
+이 문서의 관리자는 이민석 <minsuk@hansung.ac.kr> 입니다.
+이 문서의 내용에 문제나 수정할 것이 있다면 먼저 영어 원문을 확인하고 수정하는 것이 맞습니다. 번역이 잘못되었거나, 영어 원문이 개정되었다면 아래 역자에게 연락을 하시기 바랍니다.
+
+원저자 : Somebody Who <mailid@domain>
+역자： 이민석 <minsuk@hansung.ac.kr> 20YY년 MM월 DD일
+감수： 이름 <mailid@domain> 20YY년 MM월 DD일
+===
+
+Document last updated on Sat 2005-NOV-19
