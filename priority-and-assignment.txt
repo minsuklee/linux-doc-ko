@@ -1,10 +1,10 @@
-HOWTO, (done) ±è¹ÎÂù <minchan.kim@gmail.com>
-stable-api-nonsense.txt, (done) ±è¹ÎÂù <minchan.kim@gmail.com>
-SubmittingPatches, (ÀÛ¾÷Áß) ÀÌ¹Î¼® <minsuk@hansung.ac.kr>
-CodingStyle, (ÀÛ¾÷Áß) ÀÌ¹Î¼® <minsuk@hansung.ac.kr>
-SubmittingDrivers, (ÀÛ¾÷Áß) ÀÌ¹Î¼® <minsuk@hansung.ac.kr>
-SubmitChecklist, (ÀÛ¾÷Áß) ÀÌ¹Î¼® <minsuk@hansung.ac.kr>
-stable_kernel_rules, (ÀÛ¾÷Áß) ÀÌ¹Î¼® <minsuk@hansung.ac.kr>
+ï»¿HOWTO, (done) ê¹€ë¯¼ì°¬ <minchan.kim@gmail.com>
+stable-api-nonsense.txt, (done) ê¹€ë¯¼ì°¬ <minchan.kim@gmail.com>
+SubmittingPatches, (ì‘ì—…ì¤‘) ì´ë¯¼ì„ <minsuk@hansung.ac.kr>
+CodingStyle, (ì‘ì—…ì¤‘) ì´ë¯¼ì„ <minsuk@hansung.ac.kr>
+SubmittingDrivers, (ì‘ì—…ì¤‘) ì´ë¯¼ì„ <minsuk@hansung.ac.kr>
+SubmitChecklist, (ì‘ì—…ì¤‘) ì´ë¯¼ì„ <minsuk@hansung.ac.kr>
+stable_kernel_rules, (ì‘ì—…ì¤‘) ì´ë¯¼ì„ <minsuk@hansung.ac.kr>
 
 development_process/*
 

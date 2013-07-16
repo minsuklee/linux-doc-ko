@@ -1,4 +1,4 @@
-linux-doc-ko
+﻿linux-doc-ko
 ============
 
 리눅스 커널 도큐먼트를 한글로 번역하는 작업을 위한 리파지터리
@@ -7,6 +7,7 @@ Documentation/ko_KR - 번역이 완료된 한글 버전 Linux 문서 파일들<b
 src/  - 번역-리뷰를 돕기 위한 프로그램 소스<br> 
 format.ko.txt - 리뷰가 덜 끝난, 번역 중인 파일의 형식<br>
 ko_KR_Header.txt - 번역된 문서의 맨 뒤에 붙일 헤더 메시지<br>
+
 priority_and_assignment.txt - 현재 작업 중인 문서와 우선 순위<br>
 
 번역하고 계신 내용이나, 번역 작업된 것,<br>

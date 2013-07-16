@@ -1,4 +1,4 @@
-NOTE:
+﻿NOTE:
 This is a version of Documentation/stable_api_nonsense.txt translated
 into korean
 This document is maintained by barrios <minchan.kim@gmail.com>

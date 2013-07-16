@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 //#define DEBUG
-#include "ko_header.h"
+#include "ko_convert.h"
 
 // TAGS  /*<$F="원래 영어 문서의 상대적 경로">*/
 //  $F - 원래 커널 문서의 파일명 (File Name)

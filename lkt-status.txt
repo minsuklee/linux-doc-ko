@@ -1,4 +1,4 @@
-2013-07-10 - ÇÁ·ÎÁ§Æ® ½ÃÀÛ
+ï»¿2013-07-10 - í”„ë¡œì íŠ¸ ì‹œì‘
         Documentation/ko_KR/HOWTO
         Documentation/ko_KR/stable_api_nonsense.txt
-     µÎ ÆÄÀÏ¸¸ mainline kernel ¿¡ µî·ÏµÈ »óÅÂ·Î ½ÃÀÛ
+     ë‘ íŒŒì¼ë§Œ mainline kernel ì— ë“±ë¡ëœ ìƒíƒœë¡œ ì‹œì‘
