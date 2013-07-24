@@ -5,6 +5,7 @@ CodingStyle, (작업중) 이민석 <minsuk@hansung.ac.kr>
 SubmittingDrivers, (작업중) 이민석 <minsuk@hansung.ac.kr>
 SubmitChecklist, (작업중) 이민석 <minsuk@hansung.ac.kr>
 stable_kernel_rules, (작업중) 이민석 <minsuk@hansung.ac.kr>
+initrd.txt, (작업중) 장명우 <mw.jang@the-aio.com>
 
 development_process/*
 
