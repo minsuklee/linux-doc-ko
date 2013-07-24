@@ -5,16 +5,16 @@ Note that the purpose of this file is to be easier to read in Korean and is not 
 If this translation is outdated or has any problem with translation, contact the maintainer of this file.
 
 ===
-ÀÌ ¹®¼­´Â
+ì´ ë¬¸ì„œëŠ”
 Documentation/<PATH/FILE>
-ÀÇ ÇÑ±Û ¹ø¿ªÀÔ´Ï´Ù.
+ì˜ í•œê¸€ ë²ˆì—­ìž…ë‹ˆë‹¤.
 
-ÀÌ ¹®¼­ÀÇ °ü¸®ÀÚ´Â ÀÌ¹Î¼® <minsuk@hansung.ac.kr> ÀÔ´Ï´Ù.
-ÀÌ ¹®¼­ÀÇ ³»¿ë¿¡ ¹®Á¦³ª ¼öÁ¤ÇÒ °ÍÀÌ ÀÖ´Ù¸é ¸ÕÀú ¿µ¾î ¿ø¹®À» È®ÀÎÇÏ°í ¼öÁ¤ÇÏ´Â °ÍÀÌ ¸Â½À´Ï´Ù. ¹ø¿ªÀÌ Àß¸øµÇ¾ú°Å³ª, ¿µ¾î ¿ø¹®ÀÌ °³Á¤µÇ¾ú´Ù¸é ¾Æ·¡ ¿ªÀÚ¿¡°Ô ¿¬¶ôÀ» ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.
+ì´ ë¬¸ì„œì˜ ê´€ë¦¬ìžëŠ” ì´ë¯¼ì„ <minsuk@hansung.ac.kr> ìž…ë‹ˆë‹¤.
+ì´ ë¬¸ì„œì˜ ë‚´ìš©ì— ë¬¸ì œë‚˜ ìˆ˜ì •í•  ê²ƒì´ ìžˆë‹¤ë©´ ë¨¼ì € ì˜ì–´ ì›ë¬¸ì„ í™•ì¸í•˜ê³  ìˆ˜ì •í•˜ëŠ” ê²ƒì´ ë§žìŠµë‹ˆë‹¤. ë²ˆì—­ì´ ìž˜ëª»ë˜ì—ˆê±°ë‚˜, ì˜ì–´ ì›ë¬¸ì´ ê°œì •ë˜ì—ˆë‹¤ë©´ ì•„ëž˜ ì—­ìžì—ê²Œ ì—°ë½ì„ í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.
 
-¿øÀúÀÚ : Somebody Who <mailid@domain>
-¿ªÀÚ£º ÀÌ¹Î¼® <minsuk@hansung.ac.kr> 20YY³â MM¿ù DDÀÏ
-°¨¼ö£º ÀÌ¸§ <mailid@domain> 20YY³â MM¿ù DDÀÏ
+ì›ì €ìž : Somebody Who <mailid@domain>
+ì—­ìžï¼š ì´ë¯¼ì„ <minsuk@hansung.ac.kr> 20YYë…„ MMì›” DDì¼
+ê°ìˆ˜ï¼š ì´ë¦„ <mailid@domain> 20YYë…„ MMì›” DDì¼
 ===
 
 Document last updated on Sat 2005-NOV-19
