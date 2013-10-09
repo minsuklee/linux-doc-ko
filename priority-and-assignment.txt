@@ -8,9 +8,9 @@ stable_kernel_rules, (작업중) 이민석 <minsuk@hansung.ac.kr>
 initrd.txt, (작업중) 장명우 <mw.jang@the-aio.com>
 
 Documentation/development_process/
-|-- 1.Introa (작업중) 장명우 <codeart@gmail.com>
+|-- 1.Introa (Review) 장명우 <codeart@gmail.com>
 |-- 2.Process (작업중) 김낙정 <njkim0529@gmail.com>
-|-- 3.Early-stage
+|-- 3.Early-stage (작업중) 장명우 <codeart@gmail.com>
 |-- 4.Coding
 |-- 5.Posting
 |-- 6.Followthrough
