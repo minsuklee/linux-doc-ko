@@ -1,0 +1,488 @@
+NOTE:
+This is a version of Documentation/development-process/1.Intro translated into Korean.
+This document is translated by Minsuk Lee <minsuk@hansung.ac.kr>
+Note that the purpose of this file is to be easier to read in Korean and is not intended as a fork. If you have any comments or updates for this file please try to update the original English file first.
+If this translation is outdated or has any problem with translation, contact the maintainer of this file.
+
+===
+이 문서는
+Documentation/development-process/1.Intro
+의 한글 번역입니다.
+
+이 문서의 관리자는 이민석 <minsuk@hansung.ac.kr> 입니다.
+이 문서의 내용에 문제나 수정할 것이 있다면 먼저 영어 원문을 확인하고 수정하는 것이 맞습니다. 번역이 잘못되었거나, 영어 원문이 개정되었다면 아래 역자에게 연락을 하시기 바랍니다.
+
+원저자 : Somebody Who <mailid@domain>
+역자： 이민석 <minsuk@hansung.ac.kr> 20YY년 MM월 DD일
+감수： 이름 <mailid@domain> 20YY년 MM월 DD일
+===
+
+Document last updated on Sat 2005-NOV-19
+
+1: A GUIDE TO THE KERNEL DEVELOPMENT PROCESS
+1: 커널(kernel)개발 과정에 대한 안내서
+
+The purpose of this document is to help developers (and their managers)
+work with the development community with a minimum of frustration.  It is
+an attempt to document how this community works in a way which is
+accessible to those who are not intimately familiar with Linux kernel
+development (or, indeed, free software development in general).  While
+there is some technical material here, this is very much a process-oriented
+discussion which does not require a deep knowledge of kernel programming to
+understand.
+
+이 문서의 목적은 개발자들과 매니저들의 좌절감을 최소화하면서 리눅스 개발 커뮤니티와 
+함께 일할 수 있도록 돕는 것 입니다.
+리눅스 커널 개발 혹은 진짜로 일반적으로 자유 소프트웨어에 친숙하지 않은 사람들이 접근할 수 있게 
+리눅스 커널 커뮤니티가 동작하는 방식을 문서화 해보려 하는 것 입니다.
+여기에 기술적인 내용들이 있지만, 이것을 이해하기 위해 커널 프로그래밍의 깊은 지식은 필요치 않은 
+매우 과정-지향적인 논의입니다.
+
+
+1.1: EXECUTIVE SUMMARY
+1.1: 요약 
+
+The rest of this section covers the scope of the kernel development process
+and the kinds of frustrations that developers and their employers can
+encounter there.  There are a great many reasons why kernel code should be
+merged into the official ("mainline") kernel, including automatic
+availability to users, community support in many forms, and the ability to
+influence the direction of kernel development.  Code contributed to the
+Linux kernel must be made available under a GPL-compatible license.
+
+이 절의 나머지는 커널 개발 과정과 개발자와 경영자가 커널 개발 과정속에서 만날 수 있는
+좌절감의 종류들을 다루고 있습니다. 
+커널코드가 공식 ("mainline(메인라인)") 커널에 머지 되어야 하는 이유는 
+자동적으로 유저에게 사용성을 제공, 다양한 형태의 커뮤니티 지원과 커널 개발에 영향을 미칠 수 있는
+능력을 포함해서 많이 있습니다.
+리눅스 커널에 기여하는 코드는 GPL-호환 라이선스 하에서 사용할 수 있어야 합니다.
+
+Section 2 introduces the development process, the kernel release cycle, and
+the mechanics of the merge window.  The various phases in the patch
+development, review, and merging cycle are covered.  There is some
+discussion of tools and mailing lists.  Developers wanting to get started
+with kernel development are encouraged to track down and fix bugs as an
+initial exercise.
+
+2 절에서는 개발과정 및 커널 릴리즈 싸이클 그리고 머지(merge) 윈도우의 메커니즘을 소개합니다.
+패치 개발, 리뷰 그리고 머징 사이클 같은 다양한 단계가 다루어 집니다. 도구들과 메일링 리스트에 대한
+논의가 있습니다. 커널개발을 시작하려는 개발자는 초기 연습문제로 버그를 추적하여 수정하는 것을 
+권장합니다.
+
+Section 3 covers early-stage project planning, with an emphasis on
+involving the development community as soon as possible.
+
+3 절에서는 가능한 신속하게 개발 커뮤니티에 참여하는 것을 주안점을 두고 
+초기 단계 프로젝트 계획에 대해 다루겠습니다.
+
+Section 4 is about the coding process; several pitfalls which have been
+encountered by other developers are discussed.  Some requirements for
+patches are covered, and there is an introduction to some of the tools
+which can help to ensure that kernel patches are correct.
+
+4 절에서는 코딩 과정에 대한 것입니다. 
+다른 개발자들에 의해 맞닥뜨릴 수 있는 위험요소들을 논의합니다. 패치에 대한 몇가지의  
+요구사항을 다루고, 커널 패치가 정확한 지 보장 할 수 있게 도와주는 툴들을 소개합니다.
+
+Section 5 talks about the process of posting patches for review.  To be
+taken seriously by the development community, patches must be properly
+formatted and described, and they must be sent to the right place.
+Following the advice in this section should help to ensure the best
+possible reception for your work.
+
+5 절에서는 리뷰를 위한 패치 제출에 대한 과정을 말씀드립니다. 패치는 개발 커뮤니티에서 진지하게
+받아들여지기 위하여 정확히 포맷팅 되어야 하고 설명되어야 합니다. 그리고 적합한 곳으로 보내져야 합니다.
+이 절에서의 충고를 따르는 것이 여러분의 작업에 대한 가능한 가장 좋은 반응을 보증하는 데 도움이 됩니다. 
+
+Section 6 covers what happens after posting patches; the job is far from
+done at that point.  Working with reviewers is a crucial part of the
+development process; this section offers a number of tips on how to avoid
+problems at this important stage.  Developers are cautioned against
+assuming that the job is done when a patch is merged into the mainline.
+
+6 절에서는 패치후에 일어나는 일들에 대해서 다룹니다.
+일이 끝나는 것은 그 시점에서는 멉니다. 리뷰어들과 협업하는 것은 개발 과정에서 매우 중요한 부분입니다.
+이 절에서는 이 중요한 단계에 있는 문제들을 어떻게 피하는 지 팁을 제공합니다.
+개발자들은 패치가 메인라인에 머지되었을 때 그 일이 완료되었다고 가정하는 것에 대해 주의를 기울여야 합니다.
+
+Section 7 introduces a couple of "advanced" topics: managing patches with
+git and reviewing patches posted by others.
+
+7 절에서는 "고급" 주제들에 대해 소개합니다. 
+git 으로하는 패치 관리와 다른 개발자들이 제출한 패치 리뷰에 대한 것입니다.
+
+Section 8 concludes the document with pointers to sources for more
+information on kernel development.
+
+8 절에서는 커널 개발에 관한 더 많은 정보에 대한 소스들의 포인터로 이 문서를 마무리 합니다.
+
+1.2: WHAT THIS DOCUMENT IS ABOUT
+이 문서는 무엇에 관한 것 인지.
+
+The Linux kernel, at over 8 million lines of code and well over 1000
+contributors to each release, is one of the largest and most active free
+software projects in existence.  Since its humble beginning in 1991, this
+kernel has evolved into a best-of-breed operating system component which
+runs on pocket-sized digital music players, desktop PCs, the largest
+supercomputers in existence, and all types of systems in between.  It is a
+robust, efficient, and scalable solution for almost any situation.
+
+리눅스커널은 800만 라인의 코드와 1000명이 넘는 기여자들이 있는 현존하는 소프트웨어 중에
+가장 크고 활동적인 자유 소프트웨어 프로젝트 입니다.
+1991년 초라한 시작이래로, 커널은 호주머니에 들어가는 음악 플레어, 데스크탑 피씨, 현존하는
+가장 큰 수퍼컴퓨터와 모든 시스템 타입에서 동작하는 최상의 OS 컴포넌트로 진화해 왔습니다..
+거의 모든 상황에서 견고하고 효율적이며 확장성 있는 솔루션 입니다.
+
+With the growth of Linux has come an increase in the number of developers
+(and companies) wishing to participate in its development.  Hardware
+vendors want to ensure that Linux supports their products well, making
+those products attractive to Linux users.  Embedded systems vendors, who
+use Linux as a component in an integrated product, want Linux to be as
+capable and well-suited to the task at hand as possible.  Distributors and
+other software vendors who base their products on Linux have a clear
+interest in the capabilities, performance, and reliability of the Linux
+kernel.  And end users, too, will often wish to change Linux to make it
+better suit their needs.
+
+리눅스의 성장은 개발에 참여하길 원하는 많은 개발자 및 회사들의 수를 증가시켰습니다.
+하드웨어 벤더들은 제품이 리눅스 유저들에게 매력적으로 느껴지게 하기 위하여 
+리눅스가 그 제품들을 잘 지원하는 것을 보장하고 싶어 합니다. 통합 제품에서 하나의 구성요소로 
+리눅스를 사용하는 임베디드 시스템 벤더들은 즉시 쓸 수 있도록 가능한 그 작업을 해낼 수 있고
+잘 맞기를 바랍니다.
+리눅스 기반의 제품을 만드는 배포회사와 다른 소프트에워 벤더들은 리눅스 커널의
+유용성, 성능, 신뢰성에 관심이 있습니다. 그리고 리눅스 사용자들 역시 요구사항에 더 잘 맞게 
+하기 위하여 리눅스로 종종 바꾸고 싶어한다.
+
+One of the most compelling features of Linux is that it is accessible to
+these developers; anybody with the requisite skills can improve Linux and
+influence the direction of its development.  Proprietary products cannot
+offer this kind of openness, which is a characteristic of the free software
+process.  But, if anything, the kernel is even more open than most other
+free software projects.  A typical three-month kernel development cycle can
+involve over 1000 developers working for more than 100 different companies
+(or for no company at all).
+
+리눅스에서 가장 강제하는 특징은 필요 기술을 보유한 누구라도 리눅스를 발전시키고
+발전의 방향에 영향을 줄 수 있도록 개발자들에게 접근 가능 해야 한다는 것 입니다.
+독점 제품은 자유 소프트웨어 프로젝특트의 특징인 이런 개방성을 제공할 수 없습니다.
+그러나, 커널은 대부분의 자유 소프트웨어 프로젝트 보다 더 많이 개방되어 있습니다.
+전형적인 3개월의 커널 개발 주기는 100개 이상의 서로 다른 회사에서 일하거나 아니면 어떤 회사 소속도
+아닌 1000명이 넘는 개발자들이 참여합니다.
+
+Working with the kernel development community is not especially hard.  But,
+that notwithstanding, many potential contributors have experienced
+difficulties when trying to do kernel work.  The kernel community has
+evolved its own distinct ways of operating which allow it to function
+smoothly (and produce a high-quality product) in an environment where
+thousands of lines of code are being changed every day.  So it is not
+surprising that Linux kernel development process differs greatly from
+proprietary development methods.
+
+커널 개발 커뮤니티에서 일하는 것은 유별나게 어렵지는 않습니다. 하지만, 그럼에도 불구하고
+많은 잠재적인 개발자들이 커널 관련 일을 하려고 할 때 어려움을 겪고 있습니다. 커널 커뮤니티는
+매일 수천라인의 코드가 변경되는 환경에서 매끄럽게 기능하게 하고 높은 품질의 제품을 생산할 수 있게
+자신만의 다른 방식의 운영으로 진화해 왔습니다. 그래서 리눅스 커널 개발 과정이 독점 개발 방법과
+매우 다른 것은 놀랍지 않습니다.
+
+The kernel's development process may come across as strange and
+intimidating to new developers, but there are good reasons and solid
+experience behind it.  A developer who does not understand the kernel
+community's ways (or, worse, who tries to flout or circumvent them) will
+have a frustrating experience in store.  The development community, while
+being helpful to those who are trying to learn, has little time for those
+who will not listen or who do not care about the development process.
+
+커널의 개발 과정이 새로 도입하려는 개발자들에게 이상하고 위협적으로 다가올 수 있겠지만, 
+그 이면에는 타당한 이유들과 신뢰할 만한 경험들이 있습니다. 커널 커뮤니티의 방법을 
+이해하지 못하는 (혹은 더 나쁘게, 조롱하려 하거나 우회하려는) 개발자는 좌절감을
+줄 경험이 있을 것 입니다. 개발 커뮤니티가 배우려하는 사람들에게 도움이 되는 반면에
+개발 과정을 들으려 하지 않거나 신경쓰지 않는 사람들에게 쓸 시간은 없습니다.
+
+It is hoped that those who read this document will be able to avoid that
+frustrating experience.  There is a lot of material here, but the effort
+involved in reading it will be repaid in short order.  The development
+community is always in need of developers who will help to make the kernel
+better; the following text should help you - or those who work for you -
+join our community.
+
+이 문서를 읽는 사람들이 그런 절망적 경험을 피할 수 있게 되기를 희망합니다. 여기에 많은
+자료들이 있지만, 그 자료를 읽은 데 노력하는 것이 즉시 보상될 것 입니다. 개발 커뮤니티는
+항상 커널을 더 좋게 만들기 위해 도우려 하는 개발자들을 필요로 합니다. 
+다음 글은 당신 혹은 당신을 위해 일하는 사람들이 우리 커뮤니티와 함께 하는 데 도움이 될 것 입니다.
+
+
+1.3: CREDITS
+
+This document was written by Jonathan Corbet, corbet@lwn.net.  It has been
+improved by comments from Johannes Berg, James Berry, Alex Chiang, Roland
+Dreier, Randy Dunlap, Jake Edge, Jiri Kosina, Matt Mackall, Arthur Marsh,
+Amanda McPherson, Andrew Morton, Andrew Price, Tsugikazu Shibata, and
+Jochen Voß.
+
+This work was supported by the Linux Foundation; thanks especially to
+Amanda McPherson, who saw the value of this effort and made it all happen.
+
+
+1.4: THE IMPORTANCE OF GETTING CODE INTO THE MAINLINE
+
+1.4: 메인라인에 코드를 반영하는 것의 중요성
+
+Some companies and developers occasionally wonder why they should bother
+learning how to work with the kernel community and get their code into the
+mainline kernel (the "mainline" being the kernel maintained by Linus
+Torvalds and used as a base by Linux distributors).  In the short term,
+contributing code can look like an avoidable expense; it seems easier to
+just keep the code separate and support users directly.  The truth of the
+matter is that keeping code separate ("out of tree") is a false economy.
+
+어떤 회사들과 개발자들은 가끔 왜 커널 커뮤니티가 어떻게 동작하는 지 배워야 하고
+그들의 코드를 메인라인에 반영해야 하는 지 궁금해 합니다.
+("메인라인(mainline)" 리누스 토발즈에 의해 유지되고 리눅스 배포판에 기반이 되는)
+짧게 말해서 코드를 기여하는 것은 피할 수 있는 비용처럼 보입니다. 그냥 별도로
+코드를 유지하고 직접 사용자들을 지원하는 것이 더 쉬워 보입니다. 문제의 진실은
+코드를 별도로("트리 밖에") 유지하는 것은 외관상의 절약이라는 것 이다.
+
+As a way of illustrating the costs of out-of-tree code, here are a few
+relevant aspects of the kernel development process; most of these will be
+discussed in greater detail later in this document.  Consider:
+
+트리 외부의 코드의 비용을 설명하는 한 가지 방법으로, 여기에 관련된 커널 개발 과정에서 관련된 측면들이
+있습니다. 대부분은 이 문서에서 나중에 더 자세히 논의할 것 입니다.
+생각해보세요:
+
+- Code which has been merged into the mainline kernel is available to all
+  Linux users.  It will automatically be present on all distributions which
+  enable it.  There is no need for driver disks, downloads, or the hassles
+  of supporting multiple versions of multiple distributions; it all just
+  works, for the developer and for the user.  Incorporation into the
+  mainline solves a large number of distribution and support problems.
+  
+  메인라인 커널에 머지된 코드는 모든 리눅스 사용자들이 이용할 수 있습니다.
+  자동적으로 커널을 사용 가능하게 하는 배포자들에게 제출됩니다. 드라이버 디스크, 다운로드 혹은
+  다양한 배포판에 다양한 버젼을 지원하는 귀찮은 일들이 없습니다. 개발자와 사용자를 위해 모든게
+  그냥 동작합니다. 메인라인으로의 머지는 다양한 배포판과 지원 문제를 해결합니다.
+
+- While kernel developers strive to maintain a stable interface to user
+  space, the internal kernel API is in constant flux.  The lack of a stable
+  internal interface is a deliberate design decision; it allows fundamental
+  improvements to be made at any time and results in higher-quality code.
+  But one result of that policy is that any out-of-tree code requires
+  constant upkeep if it is to work with new kernels.  Maintaining
+  out-of-tree code requires significant amounts of work just to keep that
+  code working.
+  
+  커널 개발자들이 유저 공간에 고정된 인터페이스를 유지하려고 애쓰는 동안에
+  커널 내부 API는 지속적으로 변화하고 있습니다. 고정된 내부 인터페이스가 없다는 것은
+  의도된 디자인 결정입니다. 기본적인 향상이 언제라도 이루어질 수 있게 하고 결과적으로 높은 품질의
+  코드가 됩니다
+  하지만 이 정책의 한 결과로 트리 밖의 코드는 만일 새로은 커널로 작업해야 하면 지속적인 유지보수가 
+  필요합니다. 트리 밖의 코드는 그냥 동작하게 유지하는 것에 상당한 양의 작업이 필요하게 됩니다.
+
+  Code which is in the mainline, instead, does not require this work as the
+  result of a simple rule requiring any developer who makes an API change
+  to also fix any code that breaks as the result of that change.  So code
+  which has been merged into the mainline has significantly lower
+  maintenance costs.
+
+  대신에, 메인라인에 있는 코드는 API 변경을 만드는 어떤 개발자라도 그 변화의 결과로 망가지는 코드를 
+  고치야만 하는 것을 규정하는 단순한 법칙의 결과로서 이런 유지보수 작업들이 필요하지 않게 됩니다.
+  그래서 메인라인으로 머지된 코드는 유지 보수 비용이 상당히 낮게 듭니다.
+
+- Beyond that, code which is in the kernel will often be improved by other
+  developers.  Surprising results can come from empowering your user
+  community and customers to improve your product.
+
+  그런 것 이외에, 커널에 있는 코드는 다른 개발자들에 의해 개선되어질 것 입니다. 
+  놀라운 결과는 당신이 사용자 커뮤니티와 고객들에게 당신의 제품을 향상시킬 수 있는 권리를
+  제공하는 데서 옵니다.
+
+- Kernel code is subjected to review, both before and after merging into
+  the mainline.  No matter how strong the original developer's skills are,
+  this review process invariably finds ways in which the code can be
+  improved.  Often review finds severe bugs and security problems.  This is
+  especially true for code which has been developed in a closed
+  environment; such code benefits strongly from review by outside
+  developers.  Out-of-tree code is lower-quality code.
+
+  커널 코드는 메인라인에 머지되기 전-후로 리뷰해야 할 대상입니다. 원 개발자의 기술이
+  얼마나 뛰어난 지는 상관없이 이 리뷰 과정에서는 반드시 코드가 개선될 수 있는 여지를 
+  발견하게 됩니다. 패쇄적인 환경에서 개발되는 코드에 대해 특히나 더욱 사실입니다.
+  그러한 코드는 외부의 개발자들의 리뷰로부터 강력한 도움을 받습니다.
+  트리 외부의 코드는 저품질 코드입니다.
+
+- Participation in the development process is your way to influence the
+  direction of kernel development.  Users who complain from the sidelines
+  are heard, but active developers have a stronger voice - and the ability
+  to implement changes which make the kernel work better for their needs.
+
+  개발 프로제스에 참여하는 것은 커널 개발 방향에 영향을 주는 방법입니다. 방관자로써
+  불평하는 사용자들을 듣긴 하지만, 활동적인 개발자들이 더 큰 목소리와 필요에 따라 
+  커널을 더 잘 동작하게 변화를 구현할 수 있는 능력을 가지게 됩니다.
+
+- When code is maintained separately, the possibility that a third party
+  will contribute a different implementation of a similar feature always
+  exists.  Should that happen, getting your code merged will become much
+  harder - to the point of impossibility.  Then you will be faced with the
+  unpleasant alternatives of either (1) maintaining a nonstandard feature
+  out of tree indefinitely, or (2) abandoning your code and migrating your
+  users over to the in-tree version.
+
+  코드가 별도로 유지 될 떄 third party는 비슷한 기능을 다르게 구현하여 기여할 가능성이
+  항상 존재합니다. 그런 일은 여러분의 코드가 머지되게 하는 것을 더 어렵게 될 것이다.
+  불가능한 지경일 것 입니다. 그러면 당신은 썩 좋지 않은 대안들을 맞이하게 됩니다.
+  (1) 트리밖의 비표준 기능을 무기한 유지하거나 (2) 코드를 포기하고 트리 내부 버젼으로 
+  사용자들을 이동시키는 것 입니다.
+
+- Contribution of code is the fundamental action which makes the whole
+  process work.  By contributing your code you can add new functionality to
+  the kernel and provide capabilities and examples which are of use to
+  other kernel developers.  If you have developed code for Linux (or are
+  thinking about doing so), you clearly have an interest in the continued
+  success of this platform; contributing code is one of the best ways to
+  help ensure that success.
+  
+  코드의 기여는 모든 과정을 동작하게 만드는 기초적인 활동입니다. 여러분의 코드를 기여함으로써
+  여러분은 커널에 새로운 기능을 추가하고 다른 개발자들이 사용할 수 있는 능력과 예제를 제공하게 됩니다.
+  만일 여러분이 리눅스를 위해 코드를 개발하고 있었다면 혹은 하려고 생각하고 있으면 당신은 리눅스 
+  플랫폼의 지속적인 성공에 분명히 관심이 가지고 있을 것 입니다.
+  코드를 기여하는 것은 그 성공을 보장하는 데 도움이 되는 가장 좋은 방법 중에 하나 입니다.
+
+All of the reasoning above applies to any out-of-tree kernel code,
+including code which is distributed in proprietary, binary-only form.
+There are, however, additional factors which should be taken into account
+before considering any sort of binary-only kernel code distribution.  These
+include:
+
+위의 모든 추론은 독점으로 배포되는 코드, 바이너리 폼을 포함한 어떤 트리 외부의 코드에도 같이 적용됩니다.
+하지만 바이너리만 있는 커널 코드 배포를  검토하기전 고려해야할 추가적인 요인들이 있습니다.
+다음의 내용을 포함합니다. 
+
+- The legal issues around the distribution of proprietary kernel modules
+  are cloudy at best; quite a few kernel copyright holders believe that
+  most binary-only modules are derived products of the kernel and that, as
+  a result, their distribution is a violation of the GNU General Public
+  license (about which more will be said below).  Your author is not a
+  lawyer, and nothing in this document can possibly be considered to be
+  legal advice.  The true legal status of closed-source modules can only be
+  determined by the courts.  But the uncertainty which haunts those modules
+  is there regardless.
+  
+  독점 커널 모듈의 배포에 관련한 법적 이슈들은 잘해야 명확하지도 않습니다. 상당수의 커널 저작권 
+  소유자들은 바이너리만 있는 모듈들은 커널의 제품에서 파생되었을 거라 생각합니다. 그래서 그 결과로
+  독점 커널 모듈의 배포는 밑에서 더 이야기 할 GNU GPL 라이선스의 위반입니다.
+  글쓴이는 변호사가 아니고 법적 조언으로 고려할 수 있는 것은 이 문서에는 없습니다.
+  폐쇄 소스 모듈의 올바른 법적 상태는 오직 법원에서만 결정됩니다. 하지만, 그 모듈들을 괴롭히는 
+  불확실성은 법원과 무관합니다. 
+
+- Binary modules greatly increase the difficulty of debugging kernel
+  problems, to the point that most kernel developers will not even try.  So
+  the distribution of binary-only modules will make it harder for your
+  users to get support from the community.
+
+  커널 개발자들이 시도조차 하지 않을 것이란 면에서 바이너리 모듈의 디버깅 커널 문제는 난이도가 
+  높아집니다. 그래서 바이너리 모듈의 배포는 사용자들이 커뮤니티의 지원을 받은 것을 더욱 더
+  어렵게 할 것 입니다.
+
+- Support is also harder for distributors of binary-only modules, who must
+  provide a version of the module for every distribution and every kernel
+  version they wish to support.  Dozens of builds of a single module can
+  be required to provide reasonably comprehensive coverage, and your users
+  will have to upgrade your module separately every time they upgrade their
+  kernel.
+
+  모든 배포판과 모든 커널 버젼의 지원을 해야만 하는 바이너리 모듈의 배포자들에게는 지원이 또한 어렵습니다.
+  합리적으로 광범위한 적용을 위해서 단일 모듈을 수차례 빌드하는 것이 요구되고 사용자는 별도로 
+  커널을 업그레이드 할 때마다 별도로 모듈을 업그레이드 해야만 할 것 입니다.
+
+- Everything that was said above about code review applies doubly to
+  closed-source code.  Since this code is not available at all, it cannot
+  have been reviewed by the community and will, beyond doubt, have serious
+  problems.
+  
+  코드 리뷰에 대해 위에서 말한 모든 것이 패쇄 소프트웨어는 두 배로 적용됩니다. 코드가 전혀
+  가용하지 않기 때무에 커뮤니티의 리뷰도 받을 수 없고 의심을 넘어선 심각한 결함을 가지게 됩니다.
+
+Makers of embedded systems, in particular, may be tempted to disregard much
+of what has been said in this section in the belief that they are shipping
+a self-contained product which uses a frozen kernel version and requires no
+more development after its release.  This argument misses the value of
+widespread code review and the value of allowing your users to add
+capabilities to your product.  But these products, too, have a limited
+commercial life, after which a new version must be released.  At that
+point, vendors whose code is in the mainline and well maintained will be
+much better positioned to get the new product ready for market quickly.
+
+특히, 임베디드 시스템 메이커들은 특정 커널 버전을 사용하는 독립적인 제품을 만들고 있고 릴리즈 후에는 
+더 이상 개발이 필요하지 않다는 믿음으로, 
+이 섹션에서 말한 것의 많은 부분들을 무시하려는 유혹에 빠지게 됩니다.
+이 주장은 널리 알려진 코드 리뷰의 가치와 사용자가 제품에 기능 추가 할 수 있게 하는 것의 가치를
+놓치게 됩니다.
+그러나, 이런 제품들 새 버젼이 릴리즈된 후에는 역시 제한된 상업적 생명주기를 가집니다.  
+그런 관점에서 메인라인에 코드를 두고 유지보수가 잘 되는 코드의 벤더들은 빨리 마켓에 새 제품를 
+준비하는 데 더 좋은 위치에 있게 될 것 입니다.
+
+
+1.5: LICENSING
+
+Code is contributed to the Linux kernel under a number of licenses, but all
+code must be compatible with version 2 of the GNU General Public License
+(GPLv2), which is the license covering the kernel distribution as a whole.
+In practice, that means that all code contributions are covered either by
+GPLv2 (with, optionally, language allowing distribution under later
+versions of the GPL) or the three- BSD license.  Any contributions
+which are not covered by a compatible license will not be accepted into the
+kernel.
+
+코드는 여러 가지 라이선스로 리눅스 커널에 기여됩니다. 하지만, 모든 코드가 GPL V2에
+호환되어야만 합니다. 
+실제로 모든 코드 기부는 전체적으로 커널 배포를 포괄하는 라이센스 인 GPL v2 혹은 BSD 라이센스 3절로 
+보호 됩니다. 
+호환 라이센스로 보호 되지 않는 어떤 코드 기여도 커널 안에 받아들여지지 않을 것 입니다.
+
+Copyright assignments are not required (or requested) for code contributed
+to the kernel.  All code merged into the mainline kernel retains its
+original ownership; as a result, the kernel now has thousands of owners.
+
+커널에 기부한 코드에 대해서 저작권 할당은 필요하지도 요청되지도 않습니다. 
+메인라인 커널에 머지된 모든 코드는 원래의 소유권을 유지하게 됩니다. 그 결과로
+수 천의 커널 소유자들이 존재합니다.
+
+One implication of this ownership structure is that any attempt to change
+the licensing of the kernel is doomed to almost certain failure.  There are
+few practical scenarios where the agreement of all copyright holders could
+be obtained (or their code removed from the kernel).  So, in particular,
+there is no prospect of a migration to version 3 of the GPL in the
+foreseeable future.
+
+소유권 구조의 함축적 의미는 커널 라이센스에 대한 어떤 변경 시도도 거의 확실한 실패란 것 입니다.
+모든 저작권자의 동의를 구할 수 있는 현실적 시나리오는 거의 없습니다. 그래서 특히 예측 가능한
+미래에 GPL V3로 바뀔 가능성은 없습니다.
+
+It is imperative that all code contributed to the kernel be legitimately
+free software.  For that reason, code from anonymous (or pseudonymous)
+contributors will not be accepted.  All contributors are required to "sign
+off" on their code, stating that the code can be distributed with the
+kernel under the GPL.  Code which has not been licensed as free software by
+its owner, or which risks creating copyright-related problems for the
+kernel (such as code which derives from reverse-engineering efforts lacking
+proper safeguards) cannot be contributed.
+
+커널에 기부된 모든 코드는 법적으로 자유 소프트웨어 이어야 합니다. 그 이유로 익명의 기부자들의
+코드는 받아들여지지 않을 것 입니다. 모든 기여자들은 코드가 GPL 하에서 배포되는 것을 말하는 "sign off"가 
+필요합니다. 소유자가 자유 소프트웨어로 라이센스 하지 않았았던 코드 혹은
+커널에 저작권 문제를 발생할 위험을 가지고 있는 코드는 기부될 수 없습니다.
+(안전 장치가 없는 역공학으로 파생된 코드)
+
+Questions about copyright-related issues are common on Linux development
+mailing lists.  Such questions will normally receive no shortage of
+answers, but one should bear in mind that the people answering those
+questions are not lawyers and cannot provide legal advice.  If you have
+legal questions relating to Linux source code, there is no substitute for
+talking with a lawyer who understands this field.  Relying on answers
+obtained on technical mailing lists is a risky affair.</pre>
+
+저작권 관련 이슈들에 관한 질문은 리눅스 개발 메일링 리스트에 흔합니다. 그런 질문들은
+일반적으로 답변을 부족함없이 받겠지만, 답변을 하는 사람들은 변호사가 아니고 법적 조언을 
+제공할 수 없다는 것을 염두에 두어야 합니다. 리눅스 소스 코드와 관계된 법적 질의가 있으면 이 분야를
+이해하고 있는 변호사와 말하는 것을 대신할 수 있는 것은 없습니다. 테크니컬 메일링 리스트에서 받는
+답변에 의존하는 것은 위험한 일 입니다. 

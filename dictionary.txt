@@ -4,6 +4,11 @@
 # 이 사전의 형식
 # 영어 단어 (들) -> 번역된 단어 // 설명
 
-Linus Tovalds -> Linus Tovalds (리누스 토발즈) // 필요한 경우, 또는 처음에만 (리누스 토발즈) 병기
-Linux -> Linux
+Linus Tovalds 		-> Linus Tovalds (리누스 토발즈) // 필요한 경우, 또는 처음에만 (리누스 토발즈) 병기
+Linux 				-> Linux
+kernel 				-> 커널
+merge 				-> 머지 					     // 소스의 병합을 의미 : 한글로 적절한 의미를 찾을 때가 영어의 '음'을 한글로 기록
+licence 			-> 라이선스 					 // 영어의 '음' 차용
+contribute			-> 기여V
+
 
