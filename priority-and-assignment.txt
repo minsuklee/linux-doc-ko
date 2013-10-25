@@ -7,6 +7,13 @@ SubmitChecklist, (작업중) 이민석 <minsuk@hansung.ac.kr>
 stable_kernel_rules, (작업중) 이민석 <minsuk@hansung.ac.kr>
 initrd.txt, (작업중) 장명우 <mw.jang@the-aio.com>
 
+Proposal 
+ - First, we translate these 8 files
+ - Make dictionary for kernel doc translation
+ - Discuss vocabulary and idioms
+TODO:
+- Translate rest of them as much as i can :-)
+
 Documentation/development_process/
 |-- 1.Introa (Review) 장명우 <codeart@gmail.com>
 |-- 2.Process (작업중) 김낙정 <njkim0529@gmail.com>
