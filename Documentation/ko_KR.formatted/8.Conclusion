@@ -9,7 +9,11 @@ read.  Many internal kernel APIs are documented using the kerneldoc
 mechanism; "make htmldocs" or "make pdfdocs" can be used to generate those
 documents in HTML or PDF format (though the version of TeX shipped by some
 distributions runs into internal limits and fails to process the documents
-properly).
+properly). 
+
+리눅스 커널 개발과 관련된 주제에 관한 정보들의 많은 소스 가 있습니다. 
+그 소스들 중 첫번째는  커널 소스 배포에서 찾을 수 있는 항상 Documentation 폴더
+가 될 것 입니다. 최상위 폴더에 HOWTO 파일은 중요한 시작점입니다.
 
 Various web sites discuss kernel development at all levels of detail.  Your
 author would like to humbly suggest http://lwn.net/ as a source;
