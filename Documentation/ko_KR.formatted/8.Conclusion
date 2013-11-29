@@ -20,6 +20,9 @@ author would like to humbly suggest http://lwn.net/ as a source;
 information on many specific kernel topics can be found via the LWN kernel
 index at:
 
+다양한 웹사이트에서 커널 개발의 모든 세부적인 단계를 논의합니다. 필자는
+하나의 소스로서 http://lwn.net을 정중히 제안합니다. 
+다양한
 	http://lwn.net/Kernel/Index/
 
 Beyond that, a valuable resource for kernel developers is:
